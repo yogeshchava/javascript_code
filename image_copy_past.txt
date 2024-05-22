@@ -1,0 +1,26 @@
+//image copy past jascript code
+//HTML
+<div class="col-md-6">
+   <div class="form-group">
+       <label class="label" for="exampleInputFile">Screen Shot</label>
+       <input type="file" id="upload_pdf" name="upload_pdf" onchange="preview()" >
+       <h6 id="imageTitle">Title Goes Here</h6> <!-- Added id to title here -->
+       <img id="thumb" src="<?php echo base_url(); ?>assets/uploads/complient_image/<?php echo $FIlePath; ?>" width="150px" height="150px">
+   </div>
+</div>
+
+//Javascript
+
+<script type="text/javascript">
+   const fileInput = document.getElementById("upload_pdf");
+   const thumb = document.getElementById("thumb");
+
+   window.addEventListener('paste', e => {
+     fileInput.files = e.clipboardData.files;
+     preview(); // After setting the files, immediately preview the image
+   });
+
+   function preview() {
+       thumb.src = URL.createObjectURL(fileInput.files[0]);
+   }
+</script>
